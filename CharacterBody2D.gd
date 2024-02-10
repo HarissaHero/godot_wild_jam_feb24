@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal playerDeadSignal
 
-@export var invincibilityDelay = 0.2
+@export var invincibilityDelay = 0.5
 @export var maxEnergy = 100 
 
 @onready var energyConsumptionTimer = $EnergyConsumptionTimer

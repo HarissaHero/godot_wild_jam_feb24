@@ -3,7 +3,8 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 @onready var label = $Label
 
-const SPEED = 200.0
+@export var STRONG_SPEED = 200.0
+@export var WEAK_SPEED = 150.0
 
 var enemyType: ValueObjects.EnemyType
 var enemyStatus: ValueObjects.EnemyStatus
@@ -55,11 +56,11 @@ func move_toward_player():
 
   var direction = position.direction_to(player.position)
   if direction:
-    velocity.x = direction.x * SPEED
-    velocity.y = direction.y * SPEED
+    velocity.x = direction.x * STRONG_SPEED
+    velocity.y = direction.y * STRONG_SPEED
   else:
-    velocity.x = move_toward(velocity.x, 0, SPEED)
-    velocity.y = move_toward(velocity.y, 0, SPEED)
+    velocity.x = move_toward(velocity.x, 0, STRONG_SPEED)
+    velocity.y = move_toward(velocity.y, 0, STRONG_SPEED)
 
 
 func run_away_from_player(): 
@@ -67,11 +68,11 @@ func run_away_from_player():
 
   var direction = position.direction_to(player.position)
   if direction:
-    velocity.x = -direction.x * SPEED
-    velocity.y = -direction.y * SPEED
+    velocity.x = -direction.x * WEAK_SPEED
+    velocity.y = -direction.y * WEAK_SPEED
   else:
-    velocity.x = move_toward(velocity.x, 0, SPEED)
-    velocity.y = move_toward(velocity.y, 0, SPEED)
+    velocity.x = move_toward(velocity.x, 0, WEAK_SPEED)
+    velocity.y = move_toward(velocity.y, 0, WEAK_SPEED)
 
 
 func _on_player_dead_signal():
