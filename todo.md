@@ -1,14 +1,15 @@
 ## TODO
-- [ ] Player basic movement (up, down, left, right)
-- [ ] Enemy movement
-    - [ ] if Strong attack player
-    - [ ] if Weak runaway
-- [ ] Day/Night cycles
-- [ ] Energy
-    - [ ] if 0 -> game over
-    - [ ] else -> -1/s
+- [x] Player basic movement (up, down, left, right)
+- [x] Enemy movement
+    - [x] if Strong attack player
+    - [x] if Weak runaway
+- [x] Day/Night cycles
+- [x] Energy
+    - [x] if 0 -> game over
+    - [x] else -> -1/s
 - [ ] Player eat enemy if weak -> +1 energy
 - [ ] Player touch enemy strong -> -1 energy
-- [ ] Enemy types
-    - [ ] Enemy light -> Day: strong, Night: weak
-    - [ ] Enemy dark -> Day: weak, Night: strong
+- [x] Enemy types
+    - [x] Enemy light -> Day: strong, Night: weak
+    - [x] Enemy dark -> Day: weak, Night: strong
+- [ ] Enemies popup

@@ -13,6 +13,8 @@ script = ExtResource("1_xjlry")
 [node name="DayNightCycleTimer" type="Timer" parent="."]
 wait_time = 10.0
 
+[node name="EnemyPopupTimer" type="Timer" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("2_n1pw7")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -58,4 +60,5 @@ vertical_alignment = 1
 position = Vector2(172, 112)
 
 [connection signal="timeout" from="DayNightCycleTimer" to="." method="_on_day_night_cycle_timer_timeout"]
+[connection signal="timeout" from="EnemyPopupTimer" to="." method="_on_enemy_popup_timer_timeout"]
 [connection signal="playerDeadSignal" from="Player" to="Environment/Enemy" method="_on_player_dead_signal"]
