@@ -30,3 +30,8 @@ sprite_frames = SubResource("SpriteFrames_5eafu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ygql4")
+
+[node name="EnergyConsumptionTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="EnergyConsumptionTimer" to="." method="_on_energy_consumption_timer_timeout"]

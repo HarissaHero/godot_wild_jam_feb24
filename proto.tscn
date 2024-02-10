@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgb5q432fkucm"]
+[gd_scene load_steps=5 format=3 uid="uid://bgb5q432fkucm"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_xjlry"]
 [ext_resource type="PackedScene" uid="uid://dfl1akjhdqgvg" path="res://player.tscn" id="2_n1pw7"]
 [ext_resource type="PackedScene" uid="uid://cvn1h22de0civ" path="res://enemy.tscn" id="3_s4sfa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8hdr0"]
+font_size = 80
 
 [node name="proto" type="Node2D"]
 script = ExtResource("1_xjlry")
@@ -25,9 +28,34 @@ offset_top = -301.0
 offset_right = -513.0
 offset_bottom = -272.0
 
+[node name="ProgressBar" type="ProgressBar" parent="Player/Camera2D/HUD"]
+layout_mode = 0
+offset_left = 531.0
+offset_top = -153.0
+offset_right = 557.0
+offset_bottom = 153.0
+fill_mode = 3
+
+[node name="GameOver" type="Label" parent="Player/Camera2D/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_8hdr0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Environment" instance=ExtResource("3_s4sfa")]
 position = Vector2(172, 112)
 
 [connection signal="timeout" from="DayNightCycleTimer" to="." method="_on_day_night_cycle_timer_timeout"]
+[connection signal="playerDeadSignal" from="Player" to="Environment/Enemy" method="_on_player_dead_signal"]

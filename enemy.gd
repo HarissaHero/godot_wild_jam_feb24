@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 @onready var sprite = $AnimatedSprite2D
 @onready var label = $Label
 
@@ -10,6 +11,8 @@ var enemyStatus: ValueObjects.EnemyStatus
 
 var gameInstance: Node2D
 var colorShader: ShaderMaterial
+
+var playerAlive = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,13 +28,15 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-  if enemyStatus == ValueObjects.EnemyStatus.STRONG:
-    move_toward_player()
-  else: 
-    run_away_from_player()
+func _physics_process(_delta):
+  if playerAlive: 
+    if enemyStatus == ValueObjects.EnemyStatus.STRONG:
+      move_toward_player()
+    else: 
+      run_away_from_player()
 
-  move_and_slide()
+    move_and_slide()
+
   set_enemy_status()
 
 
@@ -69,3 +74,5 @@ func run_away_from_player():
     velocity.y = move_toward(velocity.y, 0, SPEED)
 
 
+func _on_player_dead_signal():
+  playerAlive = false
