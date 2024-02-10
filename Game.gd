@@ -3,9 +3,8 @@ extends Node2D
 var actualTimeCycle = ValueObjects.TimeCycle.DAY
 
 @onready var dayNightCycleTimer : Timer = $DayNightCycleTimer
-@onready var dayNightCycleIndicatorLabel: Label = $HUD/DayNightCycleIndicator
+@onready var dayNightCycleIndicatorLabel: Label = $Player/Camera2D/HUD/DayNightCycleIndicator
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
   dayNightCycleTimer.start()
   update_day_night_indicator()

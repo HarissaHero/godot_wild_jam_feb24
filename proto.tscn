@@ -7,23 +7,27 @@
 [node name="proto" type="Node2D"]
 script = ExtResource("1_xjlry")
 
-[node name="Player" parent="." instance=ExtResource("2_n1pw7")]
-position = Vector2(740, 334)
-
 [node name="DayNightCycleTimer" type="Timer" parent="."]
+wait_time = 10.0
 
-[node name="HUD" type="Control" parent="."]
+[node name="Player" parent="." instance=ExtResource("2_n1pw7")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="HUD" type="Control" parent="Player/Camera2D"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="DayNightCycleIndicator" type="Label" parent="HUD"]
+[node name="DayNightCycleIndicator" type="Label" parent="Player/Camera2D/HUD"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -553.0
+offset_top = -301.0
+offset_right = -513.0
+offset_bottom = -272.0
 
-[node name="Enemy" parent="." instance=ExtResource("3_s4sfa")]
-position = Vector2(86, 76)
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Environment" instance=ExtResource("3_s4sfa")]
+position = Vector2(172, 112)
 
 [connection signal="timeout" from="DayNightCycleTimer" to="." method="_on_day_night_cycle_timer_timeout"]
