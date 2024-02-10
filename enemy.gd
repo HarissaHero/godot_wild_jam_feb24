@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @onready var sprite = $AnimatedSprite2D
 @onready var label = $Label
 
@@ -25,6 +24,7 @@ func _ready():
   var shaderColorParam = Vector3(1., 1., 1.) if enemyType == ValueObjects.EnemyType.LIGHT else Vector3(0.5, 0.5, 1.)
   colorShader.set_shader_parameter("color", shaderColorParam)
   sprite.material = colorShader
+  gameInstance.get_node("Player").playerDeadSignal.connect(_on_player_dead_signal)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

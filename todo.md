@@ -1,4 +1,5 @@
 ## TODO
+### Mechanics
 - [x] Player basic movement (up, down, left, right)
 - [x] Enemy movement
     - [x] if Strong attack player
@@ -7,9 +8,11 @@
 - [x] Energy
     - [x] if 0 -> game over
     - [x] else -> -1/s
-- [ ] Player eat enemy if weak -> +1 energy
-- [ ] Player touch enemy strong -> -1 energy
+- [x] Player eat enemy if weak -> +1 energy
+- [x] Player touch enemy strong -> -1 energy
 - [x] Enemy types
     - [x] Enemy light -> Day: strong, Night: weak
     - [x] Enemy dark -> Day: weak, Night: strong
-- [ ] Enemies popup
+- [x] Enemies popup
+
+### Arts
