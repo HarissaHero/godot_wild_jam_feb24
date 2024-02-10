@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvn1h22de0civ"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_bjtji"]
+[ext_resource type="Texture2D" uid="uid://2jtxxp5upxja" path="res://icon.svg" id="1_hax3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k28yn"]
+size = Vector2(126, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sw4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hax3x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_bjtji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k28yn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0sw4h")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = 72.0
+offset_right = 20.0
+offset_bottom = 95.0
