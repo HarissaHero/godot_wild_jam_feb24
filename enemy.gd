@@ -22,7 +22,7 @@ func _ready():
   var shader = load("res://enemy.gdshader")
   colorShader = ShaderMaterial.new()
   colorShader.shader = shader
-  var shaderColorParam = Vector3(1., 1., 1.) if enemyType == ValueObjects.EnemyType.LIGHT else Vector3(0.5, 0.5, 1.)
+  var shaderColorParam = Vector3(1., .7, .7) if enemyType == ValueObjects.EnemyType.LIGHT else Vector3(0.7, 0.7, 1.)
   colorShader.set_shader_parameter("color", shaderColorParam)
   sprite.material = colorShader
   gameInstance.get_node("Player").playerDeadSignal.connect(_on_player_dead_signal)
@@ -39,6 +39,7 @@ func _physics_process(_delta):
     move_and_slide()
 
   set_enemy_status()
+  sprite.flip_h = true if velocity.x > 0 else false
   sprite.play("default")
 
 

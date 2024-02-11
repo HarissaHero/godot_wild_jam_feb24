@@ -36,6 +36,7 @@ func _physics_process(_delta):
       velocity.y = move_toward(velocity.y, 0, SPEED)
 
     move_and_slide()
+    animation.flip_h = true if velocity.x > 0 else false
     animation.play("idle")
 
 
