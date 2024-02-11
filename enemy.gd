@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 @onready var label = $Label
 
-@export var STRONG_SPEED = 200.0
-@export var WEAK_SPEED = 150.0
+@export var STRONG_SPEED = 150.0
+@export var WEAK_SPEED = 100.0
 
 var enemyType: ValueObjects.EnemyType
 var enemyStatus: ValueObjects.EnemyStatus
@@ -39,6 +39,7 @@ func _physics_process(_delta):
     move_and_slide()
 
   set_enemy_status()
+  sprite.play("default")
 
 
 func set_enemy_status(): 
@@ -46,9 +47,11 @@ func set_enemy_status():
     or (gameInstance.actualTimeCycle == ValueObjects.TimeCycle.DAY and enemyType == ValueObjects.EnemyType.LIGHT):
     enemyStatus = ValueObjects.EnemyStatus.STRONG 
     label.text = 'stong'
+    sprite.scale = Vector2(.8, .8)
   else: 
     enemyStatus = ValueObjects.EnemyStatus.WEAK 
     label.text = 'weak'
+    sprite.scale = Vector2(.5, .5)
 
 
 func move_toward_player(): 

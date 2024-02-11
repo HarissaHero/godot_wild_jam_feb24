@@ -16,3 +16,11 @@
 - [x] Enemies popup
 
 ### Arts
+- [ ] Player sprites
+    - [ ] Movement idle
+    - [ ] Eat
+    - [ ] Hurt
+- [ ] Enemy
+    - [ ] Movement idle
+    - [ ] Eat
+- [ ] Day/Night cycle wheel

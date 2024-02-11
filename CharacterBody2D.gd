@@ -8,6 +8,7 @@ signal playerDeadSignal
 @onready var energyConsumptionTimer = $EnergyConsumptionTimer
 @onready var energyHUDBar: ProgressBar = $Camera2D/HUD/ProgressBar
 @onready var gameOverLabel: Label = $Camera2D/HUD/GameOver
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
 const SPEED = 300.0
 
@@ -35,6 +36,7 @@ func _physics_process(_delta):
       velocity.y = move_toward(velocity.y, 0, SPEED)
 
     move_and_slide()
+    animation.play("idle")
 
 
 func _process(delta):
