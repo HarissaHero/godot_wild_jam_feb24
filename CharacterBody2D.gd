@@ -6,7 +6,7 @@ signal playerDeadSignal
 @export var maxEnergy = 100 
 
 @onready var energyConsumptionTimer = $EnergyConsumptionTimer
-@onready var energyHUDBar: ProgressBar = $Camera2D/HUD/ProgressBar
+@onready var energyHUDBar: ProgressBar = $Camera2D/HUD/EnergyBar/ProgressBar
 @onready var gameOverLabel: Label = $Camera2D/HUD/GameOver
 @onready var scoreLabel: Label = $Camera2D/HUD/Score
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
