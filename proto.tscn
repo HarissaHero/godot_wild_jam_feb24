@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgb5q432fkucm"]
+[gd_scene load_steps=4 format=3 uid="uid://bgb5q432fkucm"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_xjlry"]
 [ext_resource type="PackedScene" uid="uid://dfl1akjhdqgvg" path="res://player.tscn" id="2_n1pw7"]
-[ext_resource type="PackedScene" uid="uid://cvn1h22de0civ" path="res://enemy.tscn" id="3_s4sfa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8hdr0"]
 font_size = 80
@@ -21,7 +20,11 @@ wait_time = 10.0
 
 [node name="HUD" type="Control" parent="Player/Camera2D"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DayNightCycleIndicator" type="Label" parent="Player/Camera2D/HUD"]
 layout_mode = 0
@@ -54,11 +57,19 @@ label_settings = SubResource("LabelSettings_8hdr0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Environment" type="Node2D" parent="."]
+[node name="Score" type="Label" parent="Player/Camera2D/HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -311.0
+offset_right = 1.0
+offset_bottom = -288.0
+grow_horizontal = 2
+text = "Score: "
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Enemy" parent="Environment" instance=ExtResource("3_s4sfa")]
-position = Vector2(172, 112)
+[node name="Environment" type="Node2D" parent="."]
 
 [connection signal="timeout" from="DayNightCycleTimer" to="." method="_on_day_night_cycle_timer_timeout"]
 [connection signal="timeout" from="EnemyPopupTimer" to="." method="_on_enemy_popup_timer_timeout"]
-[connection signal="playerDeadSignal" from="Player" to="Environment/Enemy" method="_on_player_dead_signal"]
