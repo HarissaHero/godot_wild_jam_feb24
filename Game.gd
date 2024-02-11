@@ -9,6 +9,7 @@ var actualTimeCycle = ValueObjects.TimeCycle.DAY
 @onready var enemyPopupTimer: Timer = $EnemyPopupTimer
 @onready var player: Node2D = $Player
 @onready var environment: Node2D = $Environment
+@onready var MoonWheel: Sprite2D = $Player/Camera2D/HUD/DaynightWheel
 
 var Enemy = preload("res://enemy.tscn")
 
@@ -19,8 +20,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-  pass
+func _process(delta):
+  MoonWheel.rotate(PI / dayNightCycleTimer.wait_time * delta)
 
 
 func _on_day_night_cycle_timer_timeout():
