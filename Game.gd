@@ -5,7 +5,6 @@ var actualTimeCycle = ValueObjects.TimeCycle.DAY
 @export var ENEMY_POPUP_RANGE = {"min" = 100, "max" = 300}
 
 @onready var dayNightCycleTimer : Timer = $DayNightCycleTimer
-@onready var dayNightCycleIndicatorLabel: Label = $Player/Camera2D/HUD/DayNightCycleIndicator
 @onready var enemyPopupTimer: Timer = $EnemyPopupTimer
 @onready var player: Node2D = $Player
 @onready var environment: Node2D = $Environment
@@ -16,7 +15,7 @@ var Enemy = preload("res://enemy.tscn")
 func _ready():
   dayNightCycleTimer.start()
   enemyPopupTimer.start()
-  update_day_night_indicator()
+  player.playerDeadSignal.connect(_on_player_dead_signal)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,11 +25,6 @@ func _process(delta):
 
 func _on_day_night_cycle_timer_timeout():
   actualTimeCycle = ((actualTimeCycle + 1) % 2) as ValueObjects.TimeCycle
-  update_day_night_indicator()
-
-
-func update_day_night_indicator(): 
-  dayNightCycleIndicatorLabel.text = "Day" if actualTimeCycle == ValueObjects.TimeCycle.DAY else "Night"
 
 
 func create_enemy():
@@ -46,4 +40,8 @@ func create_enemy():
 
 func _on_enemy_popup_timer_timeout():
   create_enemy()	
+
+
+func _on_player_dead_signal():
+  enemyPopupTimer.stop()
 
