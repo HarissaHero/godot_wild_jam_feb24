@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 @onready var sprite = $AnimatedSprite2D
 @onready var label = $Label
@@ -6,6 +7,7 @@ extends CharacterBody2D
 @export var STRONG_SPEED = 150.0
 @export var WEAK_SPEED = 100.0
 
+var tween : Tween
 var enemyType: ValueObjects.EnemyType
 var enemyStatus: ValueObjects.EnemyStatus
 
@@ -26,6 +28,7 @@ func _ready():
   colorShader.set_shader_parameter("color", shaderColorParam)
   sprite.material = colorShader
   gameInstance.get_node("Player").playerDeadSignal.connect(_on_player_dead_signal)
+  set_enemy_status()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,11 +51,11 @@ func set_enemy_status():
     or (gameInstance.actualTimeCycle == ValueObjects.TimeCycle.DAY and enemyType == ValueObjects.EnemyType.LIGHT):
     enemyStatus = ValueObjects.EnemyStatus.STRONG 
     label.text = 'stong'
-    sprite.scale = Vector2(.8, .8)
+    sprite.scale = Vector2(.5, .5)
   else: 
     enemyStatus = ValueObjects.EnemyStatus.WEAK 
     label.text = 'weak'
-    sprite.scale = Vector2(.5, .5)
+    sprite.scale = Vector2(.3, .3)
 
 
 func move_toward_player(): 

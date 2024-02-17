@@ -8,9 +8,9 @@ var actualTimeCycle = ValueObjects.TimeCycle.DAY
 @onready var enemyPopupTimer: Timer = $EnemyPopupTimer
 @onready var player: Node2D = $Player
 @onready var environment: Node2D = $Environment
-@onready var MoonWheel: Sprite2D = $Player/Camera2D/HUD/DaynightWheel
+@onready var MoonWheel: Sprite2D = $Player/Camera2D/CanvasLayer/HUD/WheelControl/DaynightWheel
 
-var Enemy = preload("res://enemy.tscn")
+var EnemyScene = preload("res://enemy.tscn")
 
 func _ready():
   dayNightCycleTimer.start()
@@ -28,7 +28,7 @@ func _on_day_night_cycle_timer_timeout():
 
 
 func create_enemy():
-  var enemyInstance = Enemy.instantiate()
+  var enemyInstance = EnemyScene.instantiate()
   enemyInstance.position = player.position \
     + (Vector2(\
       # x,y E [-500, -100] U [100, 500]

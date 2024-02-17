@@ -17,10 +17,14 @@
 
 ### Arts
 - [ ] Player sprites
-    - [ ] Movement idle
+    - [x] Movement idle
     - [ ] Eat
     - [ ] Hurt
 - [ ] Enemy
-    - [ ] Movement idle
+    - [x] Movement idle
     - [ ] Eat
-- [ ] Day/Night cycle wheel
+- [x] Day/Night cycle wheel
+
+
+### Bugs
+- [ ] Player gets stuck on collision

@@ -6,9 +6,9 @@ signal playerDeadSignal
 @export var maxEnergy = 100 
 
 @onready var energyConsumptionTimer = $EnergyConsumptionTimer
-@onready var energyHUDBar: ProgressBar = $Camera2D/HUD/EnergyBar/ProgressBar
-@onready var gameOverLabel: Label = $Camera2D/HUD/GameOver
-@onready var scoreLabel: Label = $Camera2D/HUD/Score
+@onready var energyHUDBar: ProgressBar = $Camera2D/CanvasLayer/HUD/EnergyBar/ProgressBar
+@onready var gameOverLabel: Label = $Camera2D/CanvasLayer/HUD/GameOver
+@onready var scoreLabel: Label = $Camera2D/CanvasLayer/HUD/Score
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var comboBonusTimer: Timer = $ComboBonusTimer
 
@@ -18,31 +18,48 @@ var energy: int = maxEnergy
 
 var invincibility = invincibilityDelay 
 
+var lastCollision : KinematicCollision2D
 var combo = 1 
 var score = 0
+
+var collisionPenalityFrameCount: int = 0
 
 func _ready():
   energyConsumptionTimer.start()
 
-func _physics_process(_delta):
+func _physics_process(delta):
   # Get the input direction and handle the movement/deceleration.
   # As good practice, you should replace UI actions with custom gameplay actions.
   if energy > 0:
-    var directionX = Input.get_axis("ui_left", "ui_right")
-    var directionY = Input.get_axis("ui_up", "ui_down")
-    if directionX:
-      velocity.x = directionX * SPEED
-    else:
-      velocity.x = move_toward(velocity.x, 0, SPEED)
+    if lastCollision != get_last_slide_collision():
+      lastCollision = get_last_slide_collision()
+      if lastCollision:
+        if collisionPenalityFrameCount <= 0 \
+            and is_instance_of(lastCollision.get_collider(), Enemy) \
+            and lastCollision.get_collider().enemyStatus == ValueObjects.EnemyStatus.STRONG:
+          var direction = (lastCollision.get_collider().velocity - velocity).normalized()
+          velocity =  direction * SPEED * 5 
+          collisionPenalityFrameCount = 300 * delta
+    
+    if collisionPenalityFrameCount > 0:
+      collisionPenalityFrameCount -= 1 
+    else: 
+      var directionX = Input.get_axis("ui_left", "ui_right")
+      var directionY = Input.get_axis("ui_up", "ui_down")
+      if directionX:
+        velocity.x = directionX * SPEED
+      else: 
+        velocity.x = move_toward(velocity.x, 0, SPEED)
 
-    if directionY:
-      velocity.y = directionY * SPEED
-    else:
-      velocity.y = move_toward(velocity.y, 0, SPEED)
+      if directionY:
+        velocity.y = directionY * SPEED
+      else:
+        velocity.y = move_toward(velocity.y, 0, SPEED)
+      
+      animation.play("idle")
 
     move_and_slide()
     animation.flip_h = true if velocity.x > 0 else false
-    animation.play("idle")
 
 
 func _process(delta):
