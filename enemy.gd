@@ -2,12 +2,10 @@ extends CharacterBody2D
 class_name Enemy
 
 @onready var sprite = $AnimatedSprite2D
-@onready var label = $Label
 
 @export var STRONG_SPEED = 150.0
 @export var WEAK_SPEED = 100.0
 
-var tween : Tween
 var enemyType: ValueObjects.EnemyType
 var enemyStatus: ValueObjects.EnemyStatus
 
@@ -50,11 +48,9 @@ func set_enemy_status():
   if (gameInstance.actualTimeCycle == ValueObjects.TimeCycle.NIGHT and enemyType == ValueObjects.EnemyType.DARK) \
     or (gameInstance.actualTimeCycle == ValueObjects.TimeCycle.DAY and enemyType == ValueObjects.EnemyType.LIGHT):
     enemyStatus = ValueObjects.EnemyStatus.STRONG 
-    label.text = 'stong'
     sprite.scale = Vector2(.5, .5)
   else: 
     enemyStatus = ValueObjects.EnemyStatus.WEAK 
-    label.text = 'weak'
     sprite.scale = Vector2(.3, .3)
 
 

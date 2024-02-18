@@ -47,21 +47,41 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="GameOver" type="Label" parent="Player/Camera2D/CanvasLayer/HUD"]
+[node name="GameOverControl" type="Control" parent="Player/Camera2D/CanvasLayer/HUD"]
 visible = false
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_bottom = 11.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="Player/Camera2D/CanvasLayer/HUD/GameOverControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_8hdr0")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="Player/Camera2D/CanvasLayer/HUD/GameOverControl"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -246.0
+offset_right = 57.0
+offset_bottom = -204.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart"
 
 [node name="Score" type="Label" parent="Player/Camera2D/CanvasLayer/HUD"]
 layout_mode = 1
@@ -131,3 +151,4 @@ texture = ExtResource("4_bf387")
 
 [connection signal="timeout" from="DayNightCycleTimer" to="." method="_on_day_night_cycle_timer_timeout"]
 [connection signal="timeout" from="EnemyPopupTimer" to="." method="_on_enemy_popup_timer_timeout"]
+[connection signal="pressed" from="Player/Camera2D/CanvasLayer/HUD/GameOverControl/Restart" to="." method="_on_restart_pressed"]

@@ -103,7 +103,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1ymx"]
-radius = 91.0494
+radius = 100.125
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -115,9 +115,3 @@ sprite_frames = SubResource("SpriteFrames_0sw4h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v1ymx")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -20.0
-offset_top = 72.0
-offset_right = 20.0
-offset_bottom = 95.0

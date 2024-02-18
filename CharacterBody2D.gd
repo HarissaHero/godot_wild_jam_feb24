@@ -7,7 +7,7 @@ signal playerDeadSignal
 
 @onready var energyConsumptionTimer = $EnergyConsumptionTimer
 @onready var energyHUDBar: ProgressBar = $Camera2D/CanvasLayer/HUD/EnergyBar/ProgressBar
-@onready var gameOverLabel: Label = $Camera2D/CanvasLayer/HUD/GameOver
+@onready var gameOverControl: Control = $Camera2D/CanvasLayer/HUD/GameOverControl
 @onready var scoreLabel: Label = $Camera2D/CanvasLayer/HUD/Score
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var comboBonusTimer: Timer = $ComboBonusTimer
@@ -67,7 +67,7 @@ func _process(delta):
   if energy == 0:
     # play dead animation 
     playerDeadSignal.emit() 
-    gameOverLabel.visible = true
+    gameOverControl.visible = true
     energyConsumptionTimer.stop()
     comboBonusTimer.stop()
 
